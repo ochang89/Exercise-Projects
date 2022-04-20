@@ -1,4 +1,4 @@
-from pw_gen import *
+from pw_gen_logic import *
 
 class User:
     def __init__(self, username, password, email):
