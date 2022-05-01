@@ -1,5 +1,6 @@
 import random
 from classes import *
+import time
 
 '''
     BlackJack. Winner of the hand wins 10 points.
@@ -15,6 +16,8 @@ random.shuffle(cards)
 
 player_score = 0
 dealer_score = 0
+
+
 
 '''
     Grabs one random value from cards list.
@@ -46,24 +49,39 @@ def check_bust(hand_sum):
     else:
         return False
 
-def dealer_turn(dealer_hand):
+def dealer_decision(dealer_hand):
+
+    time.sleep(2)
     dealer_total = sum(dealer_hand)
+    
+    if dealer_total == 17:
+        new_hand = hit(dealer_hand)
+        print(sum(new_hand))
+    if dealer_total < 17:
+        new_hand = hit(dealer_hand)
+        print(sum(new_hand))
+    if dealer_total == 21:
+        print("Dealer has 21, dealer wins")
+        return True
     if dealer_total > 21:
         print("Dealer busted. You win!")
         return False
-    elif dealer_total == 21:
-        print("Dealer has 21, dealer wins")
-        return True
 
+'''
+    hit() calls randomize() function and adds it to the hand and returns the hand to the appropriate player.
+'''
 def hit(hand):
     r = randomize()
     hand.append(r)
-    print(f"You get a {r}")
+    print(f"A {r} is dealt.")
     return hand
 
 def main():
     player_hand = []
     dealer_hand = []
+
+    player_turn = True
+    player_won = False
     
     start = input("Press Enter to deal hands")
 
@@ -87,26 +105,39 @@ def main():
         print("Blackjack! Dealer wins!")
         return False
 
-    while player_total < 21 or dealer_total < 21:
-
+   
+    while player_turn == True:
         action = input("\n1.) Hit\n2.) Stay\nChoose action: ")
         if action == '1':
             player_total = sum(hit(player_hand))
             print(player_total)
             if player_total > 21:
                 print("You busted. You lose")
+                player_turn = False
                 break
             if player_total == 21:
                 print("You hit 21! You win!")
                 global player_score 
                 player_score += 10
+                player_won = True
+                player_turn = False
                 break
         if action == '2':
             # when player chooses option 2 to stay, then it becomes dealer's turn
-            dealer_win = dealer_turn(dealer_hand)
+            player_turn = False
+            break
 
-            if dealer_win == True:
-                print("You lose this round")
+    while player_turn == False and player_won == False:
+        print("Dealer's turn now..")
+        print(f"Dealer has {dealer_hand}")
+        dealer_win = dealer_decision(dealer_hand)
+
+        if dealer_win == True:
+            print("Dealer wins this round")
+            break
+        else:
+            print("You win this round")
+            break
 
 print("Welcome to a game of Blackjack!")
 while True:

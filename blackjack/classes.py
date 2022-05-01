@@ -13,4 +13,4 @@ class Player:
 
     def deal_cards(self):
         rand_index = random.randint(0, len(cards)+1)
-
+        
