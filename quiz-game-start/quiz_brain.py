@@ -23,8 +23,3 @@ class QuizBrain:
         else:
             print("Wrong!")
             print(f'Score: {self.score}/{self.q_num}')
-
-
-        
-            
-
