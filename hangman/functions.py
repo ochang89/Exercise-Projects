@@ -1,4 +1,4 @@
-# functions for hangman game
+# functions containing ASCII art for hangman game
 
 def hangman_func(player_lives):
     if player_lives == 5:

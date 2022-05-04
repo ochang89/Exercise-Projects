@@ -29,7 +29,7 @@ def randomize_list(a_list, b_list, c_list):
 
     for list in list_of_lists:
         index = random.randrange(0, len(list)+1)
-        rand_list.append(list[index-1])
+        rand_list.append(random.choice(list))
         choice = random.choice(rand_list)
     return choice
 
@@ -57,4 +57,3 @@ def main():
     pw_string = ''.join(pw_list)
     print(pw_string)
     return pw_string
-

@@ -1,3 +1,5 @@
+# this script converts numbers to binary
+
 binary_list = []
 
 def binary_convert(num):

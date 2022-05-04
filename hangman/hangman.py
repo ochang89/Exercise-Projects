@@ -3,7 +3,10 @@ import random
 from functions import *
 from replit import clear
 
+letters_guessed = []
+
 while True:
+    clear()
     player_lives = 6
     word_to_fill = []
     words = ['smooth', 'shenanigans', 'airplane', 'hippopotamus', 'hangman', 'zodiac', 'aardvark', 'transformation','metamorphosis']
@@ -27,6 +30,7 @@ while True:
         while True:
             print("Guess the word: ", ''.join(word_to_fill))
             guess = input("Guess a letter: ")
+            
 
             clear()
             word_string = ''.join(random_word)
@@ -39,6 +43,7 @@ while True:
                 player_lives -= 1
                 print("You guessed wrong!")
                 hangman_func(player_lives)
+                letters_guessed.append(guess)
                 if player_lives == 0:
                     print("\nYou lose\n")
                     break
@@ -51,6 +56,7 @@ while True:
                 print(f"\nYou guessed {word_string}.")
                 print("\n** You win! **\n")
                 break
+            print(f"Letters guessed, not in the word: {','.join(letters_guessed)}")
         break
 
     if player_lives == 0:
