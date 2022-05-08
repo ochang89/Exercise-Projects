@@ -44,5 +44,3 @@ class CoffeeMaker:
     def report(self):
         print(f"Water: {self.resources['water']}\nMilk: {self.resources['milk']}\nCoffee: {self.resources['coffee']}")
 
-
-            

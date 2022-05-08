@@ -32,4 +32,18 @@ class Deck:
 
     def shuffle_deck(self):
         random.shuffle(self.whole_deck)
-        
+
+class Player:
+    def __init__(self, name, hand):
+        self.name = name
+        self.turn = False
+        self.hand = hand
+
+    def play(self):
+        # take out card from deck to play it
+        self.play_card = self.hand.pop(0)
+        return self.play_card
+
+    def __str__(self):
+        return f"{self.name}'s card: {self.play_card}"
+
