@@ -1,0 +1,1 @@
+This folder contains exercise projects for practicing programming concepts
